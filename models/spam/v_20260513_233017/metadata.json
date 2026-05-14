@@ -1,0 +1,44 @@
+{
+  "task": "spam",
+  "model_name": "MultinomialNB",
+  "version": "v_20260513_233017",
+  "dataset_hash": "dea9d1269937",
+  "metrics": {
+    "accuracy": 0.9845,
+    "precision_weighted": 0.9843,
+    "recall_weighted": 0.9845,
+    "f1_weighted": 0.9844,
+    "macro_f1": 0.9643,
+    "classification_report": "              precision    recall  f1-score   support\n\n         ham       0.99      0.99      0.99       676\n        spam       0.96      0.92      0.94        98\n\n    accuracy                           0.98       774\n   macro avg       0.97      0.96      0.96       774\nweighted avg       0.98      0.98      0.98       774\n",
+    "training_time_seconds": 0.001,
+    "inference_time_ms": 0.25
+  },
+  "preprocessing": {
+    "lowercase": true,
+    "remove_html": true,
+    "remove_urls": true,
+    "remove_punctuation": true,
+    "normalize_numbers": true,
+    "remove_stopwords": true,
+    "lemmatize": true,
+    "min_token_length": 2
+  },
+  "vectorizer_config": {
+    "type": "tfidf",
+    "max_features": 5000,
+    "ngram_range": [
+      1,
+      2
+    ],
+    "min_df": 2,
+    "max_df": 0.95,
+    "sublinear_tf": true
+  },
+  "timestamp": "2026-05-13T23:30:23.048220",
+  "model_params": {
+    "alpha": 0.1,
+    "class_prior": null,
+    "fit_prior": true,
+    "force_alpha": true
+  }
+}

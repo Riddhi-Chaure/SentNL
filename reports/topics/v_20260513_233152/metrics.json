@@ -1,0 +1,9 @@
+{
+  "accuracy": 0.8579,
+  "precision_weighted": 0.8577,
+  "recall_weighted": 0.8579,
+  "f1_weighted": 0.8569,
+  "macro_f1": 0.8569,
+  "training_time_seconds": 0.015,
+  "inference_time_ms": 0.17
+}

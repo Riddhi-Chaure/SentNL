@@ -1,0 +1,41 @@
+# ============================================================
+# SentNL — Sentiment Analysis Task Configuration
+# Inherits from base.yaml
+# ============================================================
+
+task:
+  name: "sentiment"
+  display_name: "Sentiment Analysis"
+  description: "Binary classification of text sentiment (positive/negative)"
+
+# --- Dataset ---
+dataset:
+  path: "datasets/sentiment/IMDB Dataset.csv"
+  text_column: "review"
+  label_column: "sentiment"
+  expected_labels: ["positive", "negative"]
+
+# --- Model Candidates ---
+models:
+  primary:
+    name: "LogisticRegression"
+    class: "sklearn.linear_model.LogisticRegression"
+    hyperparameters:
+      C: [0.01, 0.1, 1.0, 10.0]
+      max_iter: [1000]
+
+  secondary:
+    name: "LinearSVC"
+    class: "sklearn.svm.LinearSVC"
+    hyperparameters:
+      C: [0.01, 0.1, 1.0, 10.0]
+      max_iter: [2000]
+
+# --- Vectorizer Override ---
+vectorizer:
+  max_features: 10000
+  ngram_range: [1, 2]
+
+# --- Artifact Paths ---
+artifacts:
+  model_dir: "models/sentiment"

@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project artifacts (large binaries)
+models/**/*.joblib
+models/**/*.pkl
+
+# Logs
+logs/*.log
+
+# Datasets (user must provide their own)
+datasets/**/*.csv
+!datasets/**/.gitkeep
+
+# Reports (generated)
+reports/**/*.png
+reports/**/*.csv
+!reports/.gitkeep
