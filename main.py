@@ -138,7 +138,7 @@ def cmd_list(args):
         config = _config_manager.get_task_config(t)
         display = config.get("task", {}).get("display_name", t)
         desc = config.get("task", {}).get("description", "")
-        print(f"  • {display} ({t}) — {desc}")
+        print(f"  - {display} ({t}) - {desc}")
     print()
 
 

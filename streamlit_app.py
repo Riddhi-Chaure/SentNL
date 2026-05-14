@@ -31,7 +31,7 @@ from src.registry import register_task, get_predictor_class, list_tasks
 
 st.set_page_config(
     page_title="SentNL — NLP Classification Platform",
-    page_icon="🧠",
+    page_icon="SentNL",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -154,7 +154,7 @@ st.markdown(
 
 # ── Header ────────────────────────────────────────────────────────────
 
-st.markdown('<div class="hero-title">🧠 SentNL</div>', unsafe_allow_html=True)
+st.markdown('<div class="hero-title">SentNL</div>', unsafe_allow_html=True)
 st.markdown(
     '<div class="hero-subtitle">'
     "Unified NLP Classification Platform — Spam · Sentiment · Topics"
@@ -165,13 +165,13 @@ st.markdown(
 # ── Sidebar ───────────────────────────────────────────────────────────
 
 with st.sidebar:
-    st.markdown("### ⚙️ Configuration")
+    st.markdown("### Configuration")
 
     available_tasks = list_tasks()
     task_labels = {
-        "spam": "🛡️ Spam Detection",
-        "sentiment": "💬 Sentiment Analysis",
-        "topics": "📂 Topic Classification",
+        "spam": "Spam Detection",
+        "sentiment": "Sentiment Analysis",
+        "topics": "Topic Classification",
     }
 
     selected_task = st.selectbox(
@@ -181,10 +181,10 @@ with st.sidebar:
     )
 
     st.markdown("---")
-    st.markdown("### 📊 Navigation")
+    st.markdown("### Navigation")
     page = st.radio(
         "View",
-        ["🔍 Predict", "📈 Model Comparison", "📋 Experiment Log"],
+        ["Predict", "Model Comparison", "Experiment Log"],
         label_visibility="collapsed",
     )
 
@@ -200,12 +200,12 @@ with st.sidebar:
 
 # ── Prediction Page ──────────────────────────────────────────────────
 
-if "🔍 Predict" in page:
+if "Predict" in page:
 
     col1, col2 = st.columns([3, 2])
 
     with col1:
-        st.markdown("### 📝 Input Text")
+        st.markdown("### Input Text")
         user_text = st.text_area(
             "Enter text to classify",
             height=150,
@@ -218,13 +218,13 @@ if "🔍 Predict" in page:
         )
 
         predict_btn = st.button(
-            "🚀 Classify",
+            "Classify",
             use_container_width=True,
             type="primary",
         )
 
     with col2:
-        st.markdown("### 📋 Task Info")
+        st.markdown("### Task Info")
         task_config = config_manager.get_task_config(selected_task)
         task_info = task_config.get("task", {})
         st.info(
@@ -293,7 +293,7 @@ if "🔍 Predict" in page:
 
                 # ── Probability Bar Chart ──
                 if probs:
-                    st.markdown("### 📊 Probability Distribution")
+                    st.markdown("### Probability Distribution")
                     prob_df = pd.DataFrame(
                         list(probs.items()), columns=["Label", "Probability"]
                     ).sort_values("Probability", ascending=True)
@@ -331,12 +331,12 @@ if "🔍 Predict" in page:
                     st.plotly_chart(fig, use_container_width=True)
 
                 # Raw JSON
-                with st.expander("🔧 Raw Response JSON"):
+                with st.expander("Raw Response JSON"):
                     st.json(result)
 
             except FileNotFoundError:
                 st.error(
-                    f"⚠️ No trained model found for **{selected_task}**. "
+                    f"No trained model found for **{selected_task}**. "
                     f"Run `python main.py train {selected_task}` first."
                 )
             except Exception as e:
@@ -348,8 +348,8 @@ if "🔍 Predict" in page:
 
 # ── Model Comparison Page ─────────────────────────────────────────────
 
-elif "📈 Model Comparison" in page:
-    st.markdown("### 📈 Model Comparison Dashboard")
+elif "Model Comparison" in page:
+    st.markdown("### Model Comparison Dashboard")
 
     experiments_path = PROJECT_ROOT / "reports" / "experiments.csv"
     if not experiments_path.exists():
@@ -369,7 +369,7 @@ elif "📈 Model Comparison" in page:
             st.info(f"No experiments found for task: {selected_task}")
         else:
             # Metrics summary
-            st.markdown("#### 🏆 Leaderboard")
+            st.markdown("#### Leaderboard")
             display_cols = [
                 "model_name",
                 "version",
@@ -389,7 +389,7 @@ elif "📈 Model Comparison" in page:
 
             # Accuracy comparison chart
             if len(task_df) > 1:
-                st.markdown("#### 📊 Metric Comparison")
+                st.markdown("#### Metric Comparison")
 
                 metric_choice = st.selectbox(
                     "Select Metric",
@@ -416,7 +416,7 @@ elif "📈 Model Comparison" in page:
                 st.plotly_chart(fig, use_container_width=True)
 
             # Training time comparison
-            st.markdown("#### ⏱️ Training & Inference Speed")
+            st.markdown("#### Training & Inference Speed")
             speed_cols = st.columns(2)
             with speed_cols[0]:
                 fig_train = px.bar(
@@ -449,7 +449,7 @@ elif "📈 Model Comparison" in page:
                 st.plotly_chart(fig_inf, use_container_width=True)
 
             # Confusion matrix viewer
-            st.markdown("#### 🔢 Confusion Matrix Viewer")
+            st.markdown("#### Confusion Matrix Viewer")
             versions = task_df["version"].tolist()
             selected_version = st.selectbox("Select run version", versions)
             cm_path = (
@@ -465,7 +465,7 @@ elif "📈 Model Comparison" in page:
                 st.info("Confusion matrix not found for this run.")
 
             # Feature importance viewer
-            st.markdown("#### 🔑 Feature Importance")
+            st.markdown("#### Feature Importance")
             fi_path = (
                 PROJECT_ROOT
                 / "reports"
@@ -498,8 +498,8 @@ elif "📈 Model Comparison" in page:
 
 # ── Experiment Log Page ───────────────────────────────────────────────
 
-elif "📋 Experiment Log" in page:
-    st.markdown("### 📋 Full Experiment History")
+elif "Experiment Log" in page:
+    st.markdown("### Full Experiment History")
 
     experiments_path = PROJECT_ROOT / "reports" / "experiments.csv"
     if not experiments_path.exists():
@@ -511,14 +511,14 @@ elif "📋 Experiment Log" in page:
         # Download button
         csv_data = df.to_csv(index=False)
         st.download_button(
-            label="📥 Download experiments.csv",
+            label="Download experiments.csv",
             data=csv_data,
             file_name="experiments.csv",
             mime="text/csv",
         )
 
         # Summary stats
-        st.markdown("#### 📊 Summary Statistics")
+        st.markdown("#### Summary Statistics")
         summary_cols = st.columns(3)
         with summary_cols[0]:
             st.metric("Total Runs", len(df))

@@ -1,10 +1,10 @@
-# 🧠 SentNL — Unified NLP Classification Platform
+# SentNL — Unified NLP Classification Platform
 
 A modular NLP experimentation and inference platform supporting multiple text classification tasks with reusable preprocessing, configurable vectorization, experiment tracking, artifact management, and extensible ML architecture.
 
 ---
 
-## ✨ Features
+## Features
 
 - **3 Classification Tasks** — Spam Detection, Sentiment Analysis, Topic Classification
 - **Shared Preprocessing** — Centralized NLP pipeline (tokenization, lemmatization, stopword removal)
@@ -16,7 +16,7 @@ A modular NLP experimentation and inference platform supporting multiple text cl
 - **Streamlit UI** — Interactive prediction, probability visualisation, and dashboards
 - **CLI Interface** — Train, predict, and compare from the command line
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 SentNL/
@@ -39,7 +39,7 @@ SentNL/
 └── streamlit_app.py  # Streamlit web interface
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Create & Activate Virtual Environment
 ```bash
@@ -88,7 +88,7 @@ python main.py predict topics "The stock market rallied today."
 streamlit run streamlit_app.py
 ```
 
-## 📊 Experiment Tracking
+## Experiment Tracking
 
 Every training run automatically logs to `reports/experiments.csv`:
 - Timestamp, task, model name, version
@@ -96,7 +96,7 @@ Every training run automatically logs to `reports/experiments.csv`:
 - Training time, inference speed
 - Dataset hash for reproducibility
 
-## 🔧 Adding a New Task
+## Adding a New Task
 
 1. Create a data loader (inherits `BaseDataLoader`)
 2. Create a trainer (inherits `BaseTrainer`, override `_build_model()`)
@@ -106,6 +106,6 @@ Every training run automatically logs to `reports/experiments.csv`:
 
 Total: ~30 lines of new code.
 
-## 📝 License
+## License
 
 MIT
